@@ -576,7 +576,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 2
-  key: 0
+  key: 101
   castEffect: {fileID: 1997371261}
   teleportRange: 10
 --- !u!114 &1301666279
