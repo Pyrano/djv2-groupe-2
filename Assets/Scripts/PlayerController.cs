@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 using UnityEngine.AI;
 
 public class PlayerController : MonoBehaviour
@@ -22,5 +23,6 @@ public class PlayerController : MonoBehaviour
         {
             agent.SetDestination(hit.point);
         }
+
     }
 }
