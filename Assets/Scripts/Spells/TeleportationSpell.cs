@@ -1,33 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+
 
 public class TeleportationSpell : Spell
 {
     [SerializeField] private float teleportRange;
-    private CharacterController cc;
+
+    private NavMeshAgent _agent;
 
     protected override void OnStart()
     {
-        cc = GetComponent<CharacterController>();
+        _agent = GetComponent<NavMeshAgent>();
+
     }
 
     protected override void OnCast()
     {
-        cc.enabled = false;
+
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out var hit, Mathf.Infinity))
         {   
             if (Vector3.Distance(transform.position, hit.point) <= teleportRange)
             {
-                transform.position = hit.point;
+
+                _agent.SetDestination(hit.point);
+                _agent.nextPosition = hit.point;
             }
             else
             {
-                transform.position += (hit.point - transform.position).normalized * teleportRange;
+                var nextPosition = _agent.nextPosition;
+                nextPosition += (hit.point - transform.position).normalized * teleportRange;
+                _agent.nextPosition = nextPosition;
+                _agent.SetDestination(nextPosition);
             }
         }
 
-        cc.enabled = true;
+
     }
 }
