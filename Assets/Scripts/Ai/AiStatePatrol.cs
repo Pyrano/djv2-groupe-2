@@ -25,6 +25,5 @@ public class AiStatePatrol : AiState
 
     public void Exit(AiAgent agent)
     {
-        throw new System.NotImplementedException();
     }
 }
