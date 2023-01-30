@@ -68,10 +68,16 @@ public class EventManager : MonoBehaviour
 public class CustomEventData
 {
     public int lifeChange;
+    public float ratio;
 
     public CustomEventData(int lifeChange)
     {
         this.lifeChange = lifeChange;
+    }
+
+    public CustomEventData(float ratio)
+    {
+        this.ratio = ratio;
     }
 }
 
