@@ -69,6 +69,7 @@ public class CustomEventData
 {
     public int lifeChange;
     public float ratio;
+    public CooldownInfo cdInfo;
 
     public CustomEventData(int lifeChange)
     {
@@ -78,6 +79,21 @@ public class CustomEventData
     public CustomEventData(float ratio)
     {
         this.ratio = ratio;
+    }
+
+    public CustomEventData(CooldownInfo info)
+    {
+        cdInfo = info;
+    }
+}
+
+public class CooldownInfo
+{
+    public float timeCast;
+
+    public CooldownInfo(float timeCast)
+    {
+        this.timeCast = timeCast;
     }
 }
 
