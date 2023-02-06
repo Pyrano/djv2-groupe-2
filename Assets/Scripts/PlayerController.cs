@@ -11,9 +11,17 @@ public class PlayerController : MonoBehaviour
 
     public int hp;
     public int hpMax;
+
+    public int stamina;
+    public int staminaMax;
+
+    public int mana;
+    public int manaMax;
     void Start()
     {
         hp = hpMax;
+        mana = manaMax;
+        stamina = staminaMax;
         agent = GetComponent<NavMeshAgent>();
         _camera = Camera.main;
     }
@@ -31,7 +39,7 @@ public class PlayerController : MonoBehaviour
         
         if (Input.GetMouseButtonDown(1))
         {
-            ChangeLife(-10);
+            ChangeStamina(-10);
         }
 
     }
@@ -49,5 +57,35 @@ public class PlayerController : MonoBehaviour
         }
 
         EventManager.TriggerEvent("Player : ChangeLife", new CustomEventData((float) hp/(float)hpMax));
+    }
+
+    public void ChangeStamina(int amount)
+    {
+        stamina += amount;
+        if (stamina < 0)
+        {
+            hp = 0;
+        }
+        if (stamina > staminaMax)
+        {
+            stamina = staminaMax;
+        }
+
+        EventManager.TriggerEvent("Player : ChangeStamina", new CustomEventData((float) stamina/(float)staminaMax));
+    }
+
+    public void ChangeMana(int amount)
+    {
+        mana += amount;
+        if (mana < 0)
+        {
+            mana = 0;
+        }
+        if (mana > manaMax)
+        {
+            mana = manaMax;
+        }
+
+        EventManager.TriggerEvent("Player : ChangeMana", new CustomEventData((float) mana/(float)manaMax));
     }
 }
