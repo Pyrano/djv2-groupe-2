@@ -10,7 +10,6 @@ public enum AiStateId
     AttackPlayer,
     Patrol
 }
-
 public interface AiState
 {
     AiStateId GetId();
