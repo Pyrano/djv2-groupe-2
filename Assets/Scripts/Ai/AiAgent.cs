@@ -11,7 +11,9 @@ public class AiAgent : MonoBehaviour
     [HideInInspector] public NavMeshAgent navMeshAgent;
     public AiStateId initialState;
     public AiAgentConfig config;
-    private float detectTime;
+    private float detectionDuration;
+    private float aggroDuration;
+    
 
     [HideInInspector] public AiSensor sensor;
     void Awake()
@@ -27,17 +29,49 @@ public class AiAgent : MonoBehaviour
     {
         sensor = GetComponent<AiSensor>();
         navMeshAgent.speed = config.speed;
-        detectTime = config.detectionSpeed;
+        detectionDuration = config.detectionSpeed;
+        aggroDuration = config.aggroTime;
+
     }
 
     void Update()
     {
         stateMachine.Update();
-        // TO DO : add time to detect
+       
+        //Detect enemy : 
         if (sensor.Objects.Count > 0 && stateMachine.currentState != AiStateId.ChasePlayer)
         {
-            detectTime -= Time.deltaTime;
-            stateMachine.ChangeState(AiStateId.ChasePlayer);
+            detectionDuration = (detectionDuration - Time.deltaTime < 0) ? 0 : detectionDuration - Time.deltaTime;
+            // If the enemy detect the player long enough he start chasing him
+            if (detectionDuration <= 0)
+            {
+                stateMachine.ChangeState(AiStateId.ChasePlayer);
+            }
         }
+        // If no player is detected
+        else
+        {
+            detectionDuration = (detectionDuration + Time.deltaTime > config.detectionSpeed) ? config.detectionSpeed : detectionDuration + Time.deltaTime;
+        }
+        
+        // Managing enemy aggro
+        if (stateMachine.currentState != AiStateId.Patrol)
+        {
+            if (sensor.Objects.Count > 0)
+            {
+                aggroDuration = (aggroDuration + Time.deltaTime > config.aggroTime) ? 
+                    config.aggroTime : aggroDuration + Time.deltaTime;
+            }
+            else
+            {
+                aggroDuration = (aggroDuration - Time.deltaTime < 0) ? 0 : aggroDuration - Time.deltaTime;
+            }
+
+            if (aggroDuration <= 0)
+            {
+                stateMachine.ChangeState(AiStateId.Patrol);
+            }
+        }
+        
     }
 }
