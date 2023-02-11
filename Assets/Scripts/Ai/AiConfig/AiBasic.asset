@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06cc2e0e4d23e924db369610412d901e, type: 3}
   m_Name: AiBasic
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 2
   detectionSpeed: 1
   aggroTime: 5

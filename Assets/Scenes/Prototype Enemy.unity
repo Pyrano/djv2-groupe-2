@@ -1153,7 +1153,7 @@ MonoBehaviour:
   - {fileID: 586542346}
   navMeshAgent: {fileID: 2035474479792663910}
   initialState: 4
-  config: {fileID: 0}
+  config: {fileID: 11400000, guid: 498329a4643d5cf49b6b94b510ef5fb4, type: 2}
   sensor: {fileID: 0}
 --- !u!114 &2035474479792663915
 MonoBehaviour:
@@ -1174,7 +1174,7 @@ MonoBehaviour:
   scanFrequency: 30
   layers:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 64
   occlusionLayers:
     serializedVersion: 2
     m_Bits: 8
@@ -1305,7 +1305,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3218865984166503435, guid: 9099fa0130ccfb6458143d1cf79f90e6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -5.64
       objectReference: {fileID: 0}
     - target: {fileID: 3218865984166503435, guid: 9099fa0130ccfb6458143d1cf79f90e6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1313,7 +1313,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3218865984166503435, guid: 9099fa0130ccfb6458143d1cf79f90e6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.81
+      value: -4.82
       objectReference: {fileID: 0}
     - target: {fileID: 3218865984166503435, guid: 9099fa0130ccfb6458143d1cf79f90e6, type: 3}
       propertyPath: m_LocalRotation.w

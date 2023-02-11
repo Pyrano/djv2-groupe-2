@@ -11,6 +11,7 @@ public class AiAgent : MonoBehaviour
     [HideInInspector] public NavMeshAgent navMeshAgent;
     public AiStateId initialState;
     public AiAgentConfig config;
+    private float detectTime;
 
     [HideInInspector] public AiSensor sensor;
     void Awake()
@@ -26,13 +27,16 @@ public class AiAgent : MonoBehaviour
     {
         sensor = GetComponent<AiSensor>();
         navMeshAgent.speed = config.speed;
+        detectTime = config.detectionSpeed;
     }
 
     void Update()
     {
         stateMachine.Update();
+        // TO DO : add time to detect
         if (sensor.Objects.Count > 0 && stateMachine.currentState != AiStateId.ChasePlayer)
         {
+            detectTime -= Time.deltaTime;
             stateMachine.ChangeState(AiStateId.ChasePlayer);
         }
     }

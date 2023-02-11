@@ -5,6 +5,7 @@ using UnityEngine;
 public class AiStateChasePlayer : AiState
 {
     private GameObject player;
+    private float aggroTimeLeft;
     public AiStateId GetId()
     {
         return AiStateId.ChasePlayer;
@@ -19,6 +20,10 @@ public class AiStateChasePlayer : AiState
     {
         // TO DO  : Optimize this
         agent.navMeshAgent.SetDestination(player.transform.position);
+        if (agent.sensor.Objects.Count == 0)
+        {
+            
+        }
     }
 
     public void Exit(AiAgent agent)
