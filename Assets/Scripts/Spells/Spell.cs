@@ -7,7 +7,7 @@ using UnityEngine;
 public abstract class Spell : MonoBehaviour
 {
     [SerializeField]
-    private float cooldown;
+    protected float cooldown;
 
     public KeyCode key;
 

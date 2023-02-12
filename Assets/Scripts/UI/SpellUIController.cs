@@ -61,5 +61,6 @@ public class SpellUIController : MonoBehaviour
     {
         CustomEventData data = (CustomEventData) objData;
         timeCast = data.cdInfo.timeCast;
+        Debug.Log(timeCast);
     }
 }

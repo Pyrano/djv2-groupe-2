@@ -18,7 +18,8 @@ public class TeleportationSpell : Spell
 
     protected override void OnCast()
     {
-
+        CooldownInfo info = new CooldownInfo(Time.time);
+        EventManager.TriggerEvent("SpellCast : Teleportation", new CustomEventData(info));
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out var hit, Mathf.Infinity))
         {   
