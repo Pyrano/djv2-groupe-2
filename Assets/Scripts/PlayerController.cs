@@ -17,12 +17,16 @@ public class PlayerController : MonoBehaviour
 
     public int mana;
     public int manaMax;
+    private Animator animator;
+    private static readonly int Speed = Animator.StringToHash("Speed");
+
     void Start()
     {
         hp = hpMax;
         mana = manaMax;
         stamina = staminaMax;
         agent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
         _camera = Camera.main;
     }
 
@@ -30,6 +34,15 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
+        if (agent.hasPath)
+        {
+            animator.SetFloat(Speed, agent.velocity.magnitude);
+        }
+        else
+        {
+            animator.SetFloat(Speed, 0);
+        }
+        
         var ray = _camera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out var hit, Mathf.Infinity))
         {
