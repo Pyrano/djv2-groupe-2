@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShurikkenUI : SpellUIManager
+public class ShurikenUI : SpellUIManager
 {
     protected override void OnEnable() 
     {
-        EventManager.AddListener("SpellCast : Shurikken", OnCast);
+        EventManager.AddListener("SpellCast : Shuriken", OnCast);
     }
 
     protected override void OnDisable()
     {
-        EventManager.RemoveListener("SpellCast : Shurikken", OnCast);
+        EventManager.RemoveListener("SpellCast : Shuriken", OnCast);
     }
 }

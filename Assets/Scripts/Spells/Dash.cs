@@ -38,6 +38,8 @@ public class Dash : Spell
     {
 
         if (!(_currentDashTime < maxDashTime)) return;
+        CooldownInfo info = new CooldownInfo(Time.time);
+        EventManager.TriggerEvent("SpellCast : Dash", new CustomEventData(info));
         _moveDirection = transform.forward * dashDistance;
         _currentDashTime += dashStoppingSpeed;
         _agent.Move(_moveDirection * (Time.deltaTime * dashSpeed));

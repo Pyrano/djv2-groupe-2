@@ -5,7 +5,11 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - castEffect: {instanceID: 0}
+<<<<<<< HEAD
+  - shurikken: {fileID: 2535144542117815268, guid: f153790563ebc044ba7ed37ad0a7013c, type: 3}
+=======
   - shuriken: {fileID: 2535144542117815268, guid: f153790563ebc044ba7ed37ad0a7013c, type: 3}
+>>>>>>> 7e78c30131017648dba640bed8dbd2a4a9486cbe
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
