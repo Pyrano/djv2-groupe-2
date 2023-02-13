@@ -14,30 +14,50 @@ public class PlayerController : MonoBehaviour
 
     public int stamina;
     public int staminaMax;
+    public float staminaRegenDelay;
+    private float lastRegen;
 
     public int mana;
     public int manaMax;
+    private Animator animator;
+    private static readonly int Speed = Animator.StringToHash("Speed");
+
     void Start()
     {
         hp = hpMax;
         mana = manaMax;
         stamina = staminaMax;
         agent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
         _camera = Camera.main;
     }
 
     void Update()
     {
+        if (agent.hasPath)
+        {
+            animator.SetFloat(Speed, agent.velocity.magnitude);
+        }
+        else
+        {
+            animator.SetFloat(Speed, 0);
+        }
         if (Input.GetMouseButton(0))
         {
-        var ray = _camera.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out var hit, Mathf.Infinity))
-        {
-            agent.SetDestination(hit.point);
-        }
+            var ray = _camera.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out var hit, Mathf.Infinity))
+            {
+                agent.SetDestination(hit.point);
+            }
         }
         
-        if (Input.GetMouseButtonDown(1))
+        if (stamina < staminaMax && Time.time -lastRegen >= staminaRegenDelay)
+            {
+                ChangeStamina(1);
+                lastRegen = Time.time;
+            }
+        
+        if (Input.GetMouseButtonDown(2))
         {
             ChangeStamina(-10);
         }

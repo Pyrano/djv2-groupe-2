@@ -1736,6 +1736,7 @@ RectTransform:
   - {fileID: 1748181525}
   - {fileID: 1545954580}
   - {fileID: 1005925998}
+  - {fileID: 996321665}
   m_Father: {fileID: 1590476903}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2571,7 +2572,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1292039870986858565, guid: bf7feddc55f487243a157f7e6d66e4dc, type: 3}
       propertyPath: m_Name
-      value: Spell_UI
+      value: Spell_UI_TP
       objectReference: {fileID: 0}
     - target: {fileID: 2236789384266924640, guid: bf7feddc55f487243a157f7e6d66e4dc, type: 3}
       propertyPath: m_Pivot.x
@@ -2697,6 +2698,10 @@ PrefabInstance:
     - target: {fileID: 3218865984166503429, guid: 9099fa0130ccfb6458143d1cf79f90e6, type: 3}
       propertyPath: staminaMax
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3218865984166503429, guid: 9099fa0130ccfb6458143d1cf79f90e6, type: 3}
+      propertyPath: staminaRegenDelay
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 3218865984166503434, guid: 9099fa0130ccfb6458143d1cf79f90e6, type: 3}
       propertyPath: m_Name
