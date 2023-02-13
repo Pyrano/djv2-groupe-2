@@ -117,6 +117,6 @@ public class PlayerController : MonoBehaviour
     private void TakeDamage(object data)
     {
         CustomEventData damage = (CustomEventData)data;
-        ChangeLife(damage.lifeChange);
+        ChangeLife(-damage.lifeChange);
     }
 }

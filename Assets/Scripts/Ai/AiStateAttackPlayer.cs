@@ -33,9 +33,8 @@ public class AiStateAttackPlayer : AiState
                 if (hitCollider.TryGetComponent<PlayerController>(out var player))
                 {
                     // UI
-                    player.hp -=(int)agent.config.attackDamage;
                     EventManager.TriggerEvent("Player damage", new CustomEventData((int)agent.config.attackDamage));
-                    Debug.Log("attacking");
+                    Debug.Log(agent.config.attackDamage);
                 }
             }
             timeToAttack = agent.config.attackSpeed;
@@ -43,7 +42,7 @@ public class AiStateAttackPlayer : AiState
     }
 
     public void Exit(AiAgent agent)
-    {
+    {   
         timeToAttack = agent.config.attackSpeed;
     }
 }
