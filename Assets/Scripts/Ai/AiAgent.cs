@@ -13,7 +13,7 @@ public class AiAgent : MonoBehaviour
     public AiAgentConfig config;
     private float detectionDuration;
     private float aggroDuration;
-    private Animator _animator;
+    public Animator _animator;
     
 
     [HideInInspector] public AiSensor sensor;

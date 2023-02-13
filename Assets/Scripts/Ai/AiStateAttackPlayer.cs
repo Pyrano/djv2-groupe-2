@@ -5,6 +5,8 @@ using UnityEngine;
 public class AiStateAttackPlayer : AiState
 {
     private float timeToAttack;
+    private static readonly int IsAttacking = Animator.StringToHash("IsAttacking");
+
     public AiStateId GetId()
     {
         return AiStateId.AttackPlayer;
@@ -12,7 +14,8 @@ public class AiStateAttackPlayer : AiState
 
     public void Enter(AiAgent agent)
     {
-        timeToAttack = agent.config.attackSpeed;
+        timeToAttack = 0;
+        agent._animator.SetBool(IsAttacking, true);
     }
 
     public void Update(AiAgent agent)
@@ -33,9 +36,7 @@ public class AiStateAttackPlayer : AiState
                 if (hitCollider.TryGetComponent<PlayerController>(out var player))
                 {
                     // UI
-                    player.hp -=(int)agent.config.attackDamage;
                     EventManager.TriggerEvent("Player damage", new CustomEventData((int)agent.config.attackDamage));
-                    Debug.Log("attacking");
                 }
             }
             timeToAttack = agent.config.attackSpeed;
@@ -44,6 +45,6 @@ public class AiStateAttackPlayer : AiState
 
     public void Exit(AiAgent agent)
     {
-        timeToAttack = agent.config.attackSpeed;
+        agent._animator.SetBool(IsAttacking, false);
     }
 }
