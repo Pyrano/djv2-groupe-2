@@ -25,6 +25,10 @@ public class ProjectileController : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        Destroy(gameObject);    
+        Destroy(gameObject);
+        if (other.gameObject.TryGetComponent<AiAgent>(out var agent))   
+        {
+            agent.TakeDamage(1);
+        }
     }
 }

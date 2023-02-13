@@ -85,4 +85,13 @@ public class AiAgent : MonoBehaviour
         }
         
     }
+
+    public void TakeDamage(int amount)
+    {
+        config.hp -= amount;
+        if (config.hp <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 }
