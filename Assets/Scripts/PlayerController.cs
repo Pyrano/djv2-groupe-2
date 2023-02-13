@@ -32,8 +32,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButton(0))
-        {
         if (agent.hasPath)
         {
             animator.SetFloat(Speed, agent.velocity.magnitude);
@@ -42,12 +40,13 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetFloat(Speed, 0);
         }
-        
-        var ray = _camera.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out var hit, Mathf.Infinity))
+        if (Input.GetMouseButton(0))
         {
-            agent.SetDestination(hit.point);
-        }
+            var ray = _camera.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out var hit, Mathf.Infinity))
+            {
+                agent.SetDestination(hit.point);
+            }
         }
         
         if (Input.GetMouseButtonDown(1))

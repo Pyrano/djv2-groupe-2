@@ -26,6 +26,7 @@ public class AiAgent : MonoBehaviour
         _animator = GetComponent<Animator>();
         stateMachine.RegisterState(new AiStatePatrol());
         stateMachine.RegisterState(new AiStateChasePlayer());
+        stateMachine.RegisterState(new AiStateAttackPlayer());
         stateMachine.ChangeState(initialState);
     }
 
@@ -41,10 +42,14 @@ public class AiAgent : MonoBehaviour
     void Update()
     {
         stateMachine.Update();
-        _animator.SetFloat(Speed, navMeshAgent.speed);
+        if(navMeshAgent.hasPath)
+            _animator.SetFloat(Speed, navMeshAgent.velocity.magnitude);
+        else
+            _animator.SetFloat(Speed, 0);
+        
        
         //Detect enemy : 
-        if (sensor.Objects.Count > 0 && stateMachine.currentState != AiStateId.ChasePlayer)
+        if (sensor.Objects.Count > 0 && stateMachine.currentState != AiStateId.ChasePlayer && stateMachine.currentState != AiStateId.AttackPlayer)
         {
             detectionDuration = (detectionDuration - Time.deltaTime < 0) ? 0 : detectionDuration - Time.deltaTime;
             // If the enemy detect the player long enough he start chasing him
