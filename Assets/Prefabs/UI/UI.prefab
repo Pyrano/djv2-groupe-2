@@ -702,7 +702,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1292039870986858565, guid: bf7feddc55f487243a157f7e6d66e4dc, type: 3}
       propertyPath: m_Name
-      value: Spell_UI_Shurikken
+      value: Spell_UI_Shuriken
       objectReference: {fileID: 0}
     - target: {fileID: 2236789384266924640, guid: bf7feddc55f487243a157f7e6d66e4dc, type: 3}
       propertyPath: m_Pivot.x
