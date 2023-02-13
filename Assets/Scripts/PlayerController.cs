@@ -108,4 +108,15 @@ public class PlayerController : MonoBehaviour
 
         EventManager.TriggerEvent("Player : ChangeMana", new CustomEventData((float) mana/(float)manaMax));
     }
+
+    void OnEnable()
+    {
+        EventManager.AddListener("Player damage", TakeDamage);
+    }
+
+    private void TakeDamage(object data)
+    {
+        CustomEventData damage = (CustomEventData)data;
+        ChangeLife(damage.lifeChange);
+    }
 }

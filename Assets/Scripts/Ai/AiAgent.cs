@@ -22,7 +22,7 @@ public class AiAgent : MonoBehaviour
     void Awake()
     {
         stateMachine = new AiStateMachine(this);
-        navMeshAgent = GetComponent<NavMeshAgent>();
+        
         _animator = GetComponent<Animator>();
         stateMachine.RegisterState(new AiStatePatrol());
         stateMachine.RegisterState(new AiStateChasePlayer());
@@ -32,6 +32,7 @@ public class AiAgent : MonoBehaviour
 
     private void Start()
     {
+        navMeshAgent = GetComponent<NavMeshAgent>();
         sensor = GetComponent<AiSensor>();
         navMeshAgent.speed = config.speed;
         detectionDuration = config.detectionSpeed;
