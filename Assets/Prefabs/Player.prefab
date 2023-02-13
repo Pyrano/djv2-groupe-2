@@ -219,7 +219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fa21dd10bcbb3b40aaf03f1491cc83b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 2
+  cooldown: 5
   key: 101
   castEffect: {fileID: 0}
   teleportRange: 10
@@ -235,7 +235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d69dc8991ebf214e877d36ed98dd38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 0
+  cooldown: 3
   key: 97
   castEffect: {fileID: 0}
   maxDashTime: 1
@@ -261,7 +261,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: -0.16
+  m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &2501122368983824193
@@ -329,7 +329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ededd515a99afc441873a2fcf020a4eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 0
+  cooldown: 1
   key: 324
   castEffect: {fileID: 0}
   shuriken: {fileID: 2535144542117815268, guid: f153790563ebc044ba7ed37ad0a7013c, type: 3}
