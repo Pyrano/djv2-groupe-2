@@ -27,14 +27,14 @@ public class TeleportationSpell : Spell
             {
 
                 _agent.SetDestination(hit.point);
-                _agent.nextPosition = hit.point;
+                _agent.Warp(hit.point);
             }
             else
             {
                 var nextPosition = _agent.nextPosition;
                 nextPosition += (hit.point - transform.position).normalized * teleportRange;
                 _agent.nextPosition = nextPosition;
-                _agent.SetDestination(nextPosition);
+                _agent.Warp(nextPosition);
             }
         }
 
