@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
 
     public int stamina;
     public int staminaMax;
+    public float staminaRegenDelay;
+    private float lastRegen;
 
     public int mana;
     public int manaMax;
@@ -49,7 +51,13 @@ public class PlayerController : MonoBehaviour
             }
         }
         
-        if (Input.GetMouseButtonDown(1))
+        if (stamina < staminaMax && Time.time -lastRegen >= staminaRegenDelay)
+            {
+                ChangeStamina(1);
+                lastRegen = Time.time;
+            }
+        
+        if (Input.GetMouseButtonDown(2))
         {
             ChangeStamina(-10);
         }
