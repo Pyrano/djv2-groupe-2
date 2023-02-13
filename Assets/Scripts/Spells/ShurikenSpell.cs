@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 public class ShurikenSpell : Spell
 {
-    public GameObject shurikken;
+    public GameObject shuriken;
 
     protected override void OnStart()
     {
@@ -21,7 +21,7 @@ public class ShurikenSpell : Spell
         if (Physics.Raycast(ray, out var hit, Mathf.Infinity))
         {   
             Vector3 direction = new Vector3(hit.point.x - transform.position.x, 0, hit.point.z - transform.position.z).normalized;
-            Instantiate(shurikken, transform.position + new Vector3(direction.x, 0.8f, direction.z) * 2f , Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z), Vector3.up));
+            Instantiate(shuriken, transform.position + new Vector3(direction.x, 0.8f, direction.z) * 2f , Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z), Vector3.up));
         }
     }
 }

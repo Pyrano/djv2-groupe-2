@@ -332,7 +332,7 @@ MonoBehaviour:
   cooldown: 0
   key: 324
   castEffect: {fileID: 0}
-  shurikken: {fileID: 2535144542117815268, guid: f153790563ebc044ba7ed37ad0a7013c, type: 3}
+  shuriken: {fileID: 2535144542117815268, guid: f153790563ebc044ba7ed37ad0a7013c, type: 3}
 --- !u!1 &2501122369014517142
 GameObject:
   m_ObjectHideFlags: 0
