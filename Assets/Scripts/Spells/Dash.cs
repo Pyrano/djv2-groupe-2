@@ -15,6 +15,7 @@ public class Dash : Spell
     public float dashSpeed = 6;
 
     private NavMeshAgent _agent;
+    private Vector3 _agentBaseDestination;
     
     float _currentDashTime;
 
@@ -28,6 +29,8 @@ public class Dash : Spell
     protected override void OnCast()
     {
         _currentDashTime = 0; 
+        _agentBaseDestination = _agent.destination;
+
 
     }
 
@@ -39,6 +42,9 @@ public class Dash : Spell
         _currentDashTime += dashStoppingSpeed;
         _agent.Move(_moveDirection * (Time.deltaTime * dashSpeed));
         _agent.SetDestination(_agent.nextPosition + _moveDirection * (Time.deltaTime * dashSpeed));
-
+        if (_currentDashTime >= maxDashTime)
+        {
+            _agent.SetDestination(_agentBaseDestination);
+        }
     }
 }
