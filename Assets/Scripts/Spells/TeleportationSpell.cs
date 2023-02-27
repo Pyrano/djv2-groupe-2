@@ -59,6 +59,12 @@ public class TeleportationSpell : Spell
 
                 trace.transform.position = hit.point;
             }
+            else
+            {
+                var nextPosition = _agent.nextPosition;
+                nextPosition += (hit.point - transform.position).normalized * teleportRange;
+                trace.transform.position = nextPosition;
+            }
         }
     }
 

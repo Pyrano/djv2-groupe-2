@@ -2064,7 +2064,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 92340dee3f928a44dbf3543b9f4f2afa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2266,6 +2266,9 @@ MonoBehaviour:
   initialState: 4
   config: {fileID: 11400000, guid: 498329a4643d5cf49b6b94b510ef5fb4, type: 2}
   _animator: {fileID: 0}
+  hp: 0
+  patrolMaterial: {fileID: 2100000, guid: 92340dee3f928a44dbf3543b9f4f2afa, type: 2}
+  chaseMaterial: {fileID: 2100000, guid: 7d9891962268b0247a430f08bdba9a32, type: 2}
   sensor: {fileID: 0}
 --- !u!114 &7993676104751723949
 MonoBehaviour:
@@ -2282,7 +2285,7 @@ MonoBehaviour:
   distance: 10
   angle: 30
   height: 1
-  meshColor: {r: 1, g: 0, b: 0, a: 0.74509805}
+  meshColor: {r: 1, g: 0.08780822, b: 0, a: 0.74509805}
   scanFrequency: 30
   layers:
     serializedVersion: 2
@@ -2292,7 +2295,7 @@ MonoBehaviour:
     m_Bits: 8
   viewMeshFilter: {fileID: 2236759636605510579}
   viewMesh: {fileID: 0}
-  viewOffset: {x: 0, y: 2, z: 0}
+  viewOffset: {x: 0, y: 1.9, z: 0}
   objects: []
 --- !u!95 &7993676104751723946
 Animator:

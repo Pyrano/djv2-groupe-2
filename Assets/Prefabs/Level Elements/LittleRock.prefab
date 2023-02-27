@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8786007404143753940}
   - component: {fileID: 2428258966610414870}
   - component: {fileID: 3442840860954809523}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LittleRock
   m_TagString: Untagged
   m_Icon: {fileID: 0}

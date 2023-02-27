@@ -14,6 +14,9 @@ public class AiAgent : MonoBehaviour
     private float detectionDuration;
     private float aggroDuration;
     public Animator _animator;
+    public int hp;
+    public Material patrolMaterial;
+    public Material chaseMaterial;
     
 
     [HideInInspector] public AiSensor sensor;
@@ -28,6 +31,7 @@ public class AiAgent : MonoBehaviour
         stateMachine.RegisterState(new AiStateChasePlayer());
         stateMachine.RegisterState(new AiStateAttackPlayer());
         stateMachine.ChangeState(initialState);
+        hp = config.hp;
     }
 
     private void Start()
@@ -57,6 +61,7 @@ public class AiAgent : MonoBehaviour
             if (detectionDuration <= 0)
             {
                 stateMachine.ChangeState(AiStateId.ChasePlayer);
+                transform.GetChild(4).GetComponent<MeshRenderer>().material = chaseMaterial;
             }
         }
         // If no player is detected
@@ -81,6 +86,7 @@ public class AiAgent : MonoBehaviour
             if (aggroDuration <= 0)
             {
                 stateMachine.ChangeState(AiStateId.Patrol);
+                transform.GetChild(4).GetComponent<MeshRenderer>().material = patrolMaterial;
             }
         }
         
@@ -88,8 +94,8 @@ public class AiAgent : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
-        config.hp -= amount;
-        if (config.hp <= 0)
+        hp -= amount;
+        if (hp <= 0)
         {
             Destroy(gameObject);
         }

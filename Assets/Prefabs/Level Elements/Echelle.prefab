@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1455613837828718139}
   - component: {fileID: 1746309793786962430}
   - component: {fileID: 4702288885709427046}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3082875427094855912}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Echelle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,6 +144,10 @@ PrefabInstance:
     - target: {fileID: 1631167850905779585, guid: 90715bc805a8eab47ae8f40b5c9ed294, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1631167850905779598, guid: 90715bc805a8eab47ae8f40b5c9ed294, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1631167851124319644, guid: 90715bc805a8eab47ae8f40b5c9ed294, type: 3}
       propertyPath: m_RootOrder
@@ -193,6 +197,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Off-meshLink
       objectReference: {fileID: 0}
+    - target: {fileID: 1631167851124319645, guid: 90715bc805a8eab47ae8f40b5c9ed294, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1631167852119520140, guid: 90715bc805a8eab47ae8f40b5c9ed294, type: 3}
       propertyPath: m_LocalPosition.y
       value: -1
@@ -200,6 +208,10 @@ PrefabInstance:
     - target: {fileID: 1631167852119520140, guid: 90715bc805a8eab47ae8f40b5c9ed294, type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1631167852119520141, guid: 90715bc805a8eab47ae8f40b5c9ed294, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90715bc805a8eab47ae8f40b5c9ed294, type: 3}

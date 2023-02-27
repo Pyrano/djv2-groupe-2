@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06cc2e0e4d23e924db369610412d901e, type: 3}
   m_Name: AiBasic
   m_EditorClassIdentifier: 
+  hp: 3
+  hpMah: 3
   speed: 2
-  detectionSpeed: 1
-  aggroTime: 5
-  attackRange: 5
+  detectionSpeed: 0.3
+  aggroTime: 3
+  attackRange: 1.5
   attackSpeed: 3
   attackDamage: 10

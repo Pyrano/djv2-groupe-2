@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AiStateChasePlayer : AiState
 {
+    
+
     private GameObject player;
     public AiStateId GetId()
     {
