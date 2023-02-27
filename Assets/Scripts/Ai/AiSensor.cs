@@ -13,6 +13,27 @@ public class AiSensor : MonoBehaviour
    public int scanFrequency = 30;
    public LayerMask layers;
    public LayerMask occlusionLayers;
+   public MeshFilter viewMeshFilter;
+   public Mesh viewMesh;
+   public Vector3 viewOffset;
+   
+   public struct ViewCastInfo
+   {
+      public bool hit;
+      public Vector3 point;
+      public float distance;
+      public float angle;
+      public Vector3 offset;  
+
+      public ViewCastInfo(bool _hit, Vector3 _point, float _distance, float _angle,  Vector3 _offset)
+      {
+         hit = _hit;
+         point = _point;
+         distance = _distance;
+         angle = _angle;
+         offset = _offset;
+      }
+   }
 
    public List<GameObject> Objects
    {
@@ -34,6 +55,9 @@ public class AiSensor : MonoBehaviour
    private void Start()
    {
       scanInterval = 1f / scanFrequency;
+      viewMesh = new Mesh();
+      viewMesh.name = "View Mesh";
+      viewMeshFilter.mesh = viewMesh;
    }
 
    private void Update()
@@ -44,6 +68,10 @@ public class AiSensor : MonoBehaviour
          scanTimer += scanInterval;
          Scan();
       }
+   }
+   private void LateUpdate()
+   {
+      drawFieldOfView(viewOffset);
    }
 
    private void Scan()
@@ -215,4 +243,71 @@ public class AiSensor : MonoBehaviour
 
       return count;
    }
+
+   private Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal)
+   {
+      if (!angleIsGlobal)
+      {
+         angleInDegrees += transform.eulerAngles.y;
+      }
+      return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
+   }
+
+   private ViewCastInfo ViewCast(float globalAngle)
+   {
+      Vector3 dir = DirFromAngle(globalAngle, true);
+      RaycastHit hit;
+
+      if (Physics.Raycast(transform.position + viewOffset, dir, out hit, distance, occlusionLayers))
+      {
+         return new ViewCastInfo(true, hit.point, hit.distance, globalAngle, viewOffset);
+      }
+      else
+      {
+         return new ViewCastInfo(false, transform.position + dir * distance, distance, globalAngle, viewOffset);
+      }
+   }
+
+   private void drawFieldOfView(Vector3 offset){
+      int stepCount = Mathf.RoundToInt(angle * 2);
+      float stepAngleSize = angle * 2 / stepCount;
+      List<Vector3> viewPoints = new List<Vector3>();
+
+      for (int i = 0; i <= stepCount; i++)
+      {
+         float eAngle = transform.eulerAngles.y - angle + stepAngleSize * i;
+         Vector3 dir = DirFromAngle(eAngle, true);
+         ViewCastInfo newViewCast = ViewCast(eAngle);
+         Vector3 newpoint = newViewCast.point;
+         viewPoints.Add(newpoint);
+         }
+
+         int vertexCount = viewPoints.Count + 1;
+         Vector3[] vertices = new Vector3[vertexCount];
+         int[] triangles = new int[(vertexCount - 2) * 3];
+         
+         vertices[0] = offset;
+         for (int i = 0; i < vertexCount - 1; i++)
+         {
+            vertices[i + 1] = transform.InverseTransformPoint(viewPoints[i]);            
+            
+            if (i < vertexCount - 2)
+            {
+               triangles[i * 3] = 0;
+               triangles[i * 3 + 1] = i + 1;
+               triangles[i * 3 + 2] = i + 2;
+            }
+         }
+
+         for (int i = 0; i < vertexCount; i++)
+         {
+            vertices[i].y = 0;
+         }
+
+         viewMesh.Clear();
+         viewMesh.vertices = vertices;
+         viewMesh.triangles = triangles;
+         viewMesh.RecalculateNormals();
+   }
+
 }
