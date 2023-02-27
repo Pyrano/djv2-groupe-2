@@ -17,6 +17,7 @@ public class AiAgent : MonoBehaviour
     public int hp;
     public Material patrolMaterial;
     public Material chaseMaterial;
+    public GameObject Player;
     
 
     [HideInInspector] public AiSensor sensor;
