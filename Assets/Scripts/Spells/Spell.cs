@@ -10,25 +10,39 @@ public abstract class Spell : MonoBehaviour
     protected float cooldown;
 
     public KeyCode key;
+    public int manaCost;
 
     private float _cooldownTime;
 
     public GameObject castEffect;
 
+    public PlayerController controller;
+
     private void Start()
     {
+        controller = GetComponent<PlayerController>();
         OnStart();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(key))
+        if (Input.GetKeyUp(key))
         {
-            if (_cooldownTime <= 0)
+            OnKeyUp();
+            if (_cooldownTime <= 0 && manaCost <= controller.mana)
             {
                 _cooldownTime = cooldown;
+                controller.ChangeMana(-manaCost);
                 OnCast();
             }
+        }
+        if (Input.GetKeyDown(key))
+        {
+            OnKeyDown();
+        }
+        if (Input.GetKey(key))
+        {
+            OnPreCast();
         }
         OnUpdate();
 
@@ -40,6 +54,18 @@ public abstract class Spell : MonoBehaviour
     }
 
     protected virtual void OnCast()
+    {
+    }
+
+    protected virtual void OnKeyDown()
+    {
+    }
+
+    protected virtual void OnKeyUp()
+    {
+    }
+
+    protected virtual void OnPreCast()
     {
     }
 

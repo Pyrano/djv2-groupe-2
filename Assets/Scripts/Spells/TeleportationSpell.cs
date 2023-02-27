@@ -9,6 +9,9 @@ public class TeleportationSpell : Spell
     [SerializeField] private float teleportRange;
 
     private NavMeshAgent _agent;
+    public GameObject projector;
+
+    private GameObject trace;
 
     protected override void OnStart()
     {
@@ -39,5 +42,28 @@ public class TeleportationSpell : Spell
         }
 
 
+    }
+
+    protected override void OnKeyDown()
+    {
+        trace = Instantiate(projector);
+    }
+
+    protected override void OnPreCast()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out var hit, Mathf.Infinity))
+        {   
+            if (Vector3.Distance(transform.position, hit.point) <= teleportRange)
+            {
+
+                trace.transform.position = hit.point;
+            }
+        }
+    }
+
+    protected override void OnKeyUp()
+    {
+        Destroy(trace);
     }
 }

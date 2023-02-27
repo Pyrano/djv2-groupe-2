@@ -221,8 +221,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 5
   key: 101
+  manaCost: 50
   castEffect: {fileID: 0}
+  controller: {fileID: 0}
   teleportRange: 10
+  projector: {fileID: 7757714437854856476, guid: 733ca68f3e2fbc24783c9b40ef4c12da, type: 3}
 --- !u!114 &2501122368983824205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,7 +240,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 3
   key: 97
+  manaCost: 0
   castEffect: {fileID: 0}
+  controller: {fileID: 0}
   maxDashTime: 1
   dashDistance: 10
   dashStoppingSpeed: 0.1
@@ -279,10 +284,10 @@ MonoBehaviour:
   hp: 0
   hpMax: 100
   stamina: 0
-  staminaMax: 0
+  staminaMax: 100
   staminaRegenDelay: 0
   mana: 0
-  manaMax: 0
+  manaMax: 100
 --- !u!95 &2501122368983824198
 Animator:
   serializedVersion: 5
@@ -331,7 +336,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 1
   key: 324
+  manaCost: 0
   castEffect: {fileID: 0}
+  controller: {fileID: 0}
   shuriken: {fileID: 2535144542117815268, guid: 9d642a4f22fe2e041bf69dd6b587c4fb, type: 3}
 --- !u!1 &2501122369014517142
 GameObject:
