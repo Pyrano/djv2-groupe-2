@@ -14,7 +14,7 @@ public class AiStateAttackPlayer : AiState
 
     public void Enter(AiAgent agent)
     {
-        timeToAttack = 0;
+        timeToAttack = agent.config.attackSpeed;
         agent._animator.SetBool(IsAttacking, true);
     }
 
