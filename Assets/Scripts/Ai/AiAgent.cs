@@ -32,6 +32,7 @@ public class AiAgent : MonoBehaviour
         stateMachine.RegisterState(new AiStateChasePlayer());
         stateMachine.RegisterState(new AiStateAttackPlayer());
         stateMachine.RegisterState(new AiStateAlarm());
+        stateMachine.RegisterState(new AiStateCheckAlarm());
         stateMachine.ChangeState(initialState);
         hp = config.hp;
     }

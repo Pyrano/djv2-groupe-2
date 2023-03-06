@@ -9,6 +9,7 @@ public class Game : Singleton<Game>
    public List<Transform> alarms;
    public List<AiAgent> enemies;
    public GameObject player;
+   public Vector3 triggeredAlarm;
 
    private void Start()
    {

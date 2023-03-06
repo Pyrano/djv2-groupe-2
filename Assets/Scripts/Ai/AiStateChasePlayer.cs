@@ -7,6 +7,7 @@ public class AiStateChasePlayer : AiState
     
 
     private GameObject player;
+    public int lookAroundCooldown = 1;
     public AiStateId GetId()
     {
         return AiStateId.ChasePlayer;
@@ -25,10 +26,12 @@ public class AiStateChasePlayer : AiState
 
     public void Update(AiAgent agent)
     {
-        // TO DO  : Optimize this
-        
+        // TO DO  : Optimize this        
         if(agent.sensor.Objects.Count == 0)
+        {
+            agent.sensor.lookAround(agent);
             return;
+        }
         agent.navMeshAgent.SetDestination(player.transform.position);
         Debug.Log("Destination : " + player.transform.position);
         if (Vector3.Distance(agent.sensor.Objects[0].transform.position, agent.transform.position) <= agent.config.attackRange)

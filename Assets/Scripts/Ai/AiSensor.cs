@@ -6,8 +6,6 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class AiSensor : MonoBehaviour
 {
-
-
    public float distance = 10f;
    public float angle = 30;
    public float height = 1f;
@@ -72,10 +70,6 @@ public class AiSensor : MonoBehaviour
       viewMeshFilter.mesh = viewMesh;
    }
 
-   private void Update()
-   {
-
-   }
    private void FixedUpdate()
    {
       scanTimer -= Time.deltaTime;
@@ -321,6 +315,20 @@ public class AiSensor : MonoBehaviour
          viewMesh.vertices = vertices;
          viewMesh.triangles = triangles;
          viewMesh.RecalculateNormals();
+   }
+
+   IEnumerator lookAroundCoroutine(AiAgent agent)
+   {
+        for (int i = 0; i < 5; i++)
+        {        
+            agent.navMeshAgent.SetDestination(agent.transform.position + new Vector3(UnityEngine.Random.Range(-10, 10), 0, UnityEngine.Random.Range(-10, 10)));
+            yield return new WaitForSeconds(1);
+        }
+   }
+
+   public void lookAround(AiAgent agent)
+   {
+      StartCoroutine(lookAroundCoroutine(agent));
    }
 
 }
