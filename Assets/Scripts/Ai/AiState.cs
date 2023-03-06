@@ -9,8 +9,10 @@ public enum AiStateId
     Idle,
     AttackPlayer,
     Patrol,
-    Alarm
+    Alarm,
+    
 }
+
 public interface AiState
 {
     AiStateId GetId();
