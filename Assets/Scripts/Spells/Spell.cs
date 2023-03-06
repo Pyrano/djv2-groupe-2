@@ -11,6 +11,7 @@ public abstract class Spell : MonoBehaviour
 
     public KeyCode key;
     public int manaCost;
+    public int staminaCost;
 
     private float _cooldownTime;
 
@@ -29,10 +30,11 @@ public abstract class Spell : MonoBehaviour
         if (Input.GetKeyUp(key))
         {
             OnKeyUp();
-            if (_cooldownTime <= 0 && manaCost <= controller.mana)
+            if (_cooldownTime <= 0 && manaCost <= controller.mana && staminaCost <= controller.stamina)
             {
                 _cooldownTime = cooldown;
                 controller.ChangeMana(-manaCost);
+                controller.ChangeStamina(-staminaCost);
                 OnCast();
             }
         }

@@ -7,6 +7,8 @@ using UnityEngine.AI;
 public class PlayerController : MonoBehaviour
 {
     public bool isNoisy;
+    public bool isRunning;
+    private float lastRClick;
     private NavMeshAgent agent;
     private Camera _camera;
 
@@ -31,6 +33,8 @@ public class PlayerController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         _camera = Camera.main;
+        lastRClick = Time.time;
+        isRunning = false;
     }
 
     void Update()
@@ -51,6 +55,19 @@ public class PlayerController : MonoBehaviour
                 agent.SetDestination(hit.point);
             }
         }
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (Time.time - lastRClick <= 0.25)
+            {
+                isRunning = true;
+            }
+            else
+            {
+                isRunning = false;
+            }
+
+            lastRClick = Time.time;
+        }
         
         if (stamina < staminaMax && Time.time -lastRegen >= staminaRegenDelay)
             {
@@ -63,6 +80,15 @@ public class PlayerController : MonoBehaviour
             ChangeStamina(-10);
         }
 
+        UpdateNoise();
+        if (isRunning)
+        {
+            agent.speed = 5.0f;
+        }
+        else
+        {
+            agent.speed = 3.5f;
+        }
     }
 
     public void ChangeLife(int amount)
@@ -78,6 +104,19 @@ public class PlayerController : MonoBehaviour
         }
 
         EventManager.TriggerEvent("Player : ChangeLife", new CustomEventData((float) hp/(float)hpMax));
+    }
+
+    private void UpdateNoise()
+    {
+        if (isRunning)
+        {
+            isNoisy = true;
+        }
+
+        else
+        {
+            isNoisy = false;
+        }
     }
 
     public void ChangeStamina(int amount)
