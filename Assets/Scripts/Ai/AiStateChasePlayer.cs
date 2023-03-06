@@ -15,14 +15,19 @@ public class AiStateChasePlayer : AiState
     public void Enter(AiAgent agent)
     {
         Debug.Log("chase player");
-        if(agent.sensor.Objects.Count > 0)
+
+        if (agent.sensor.Objects.Count > 0)
             player = agent.sensor.Objects[0];
+        else
+            player = Game.Instance.player;
+
     }
 
     public void Update(AiAgent agent)
     {
         // TO DO  : Optimize this
         agent.navMeshAgent.SetDestination(player.transform.position);
+        
         if(agent.sensor.Objects.Count == 0)
             return;
         if (Vector3.Distance(agent.sensor.Objects[0].transform.position, agent.transform.position) <= agent.config.attackRange)

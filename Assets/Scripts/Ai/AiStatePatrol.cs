@@ -15,6 +15,7 @@ public class AiStatePatrol : AiState
     public void Enter(AiAgent agent)
     {
         _waypoints = agent.wayPoints;
+        Debug.Log("waypoitns " +_waypoints.Length);
     }
 
     public void Update(AiAgent agent)

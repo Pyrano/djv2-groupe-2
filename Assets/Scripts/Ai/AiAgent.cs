@@ -30,6 +30,7 @@ public class AiAgent : MonoBehaviour
         stateMachine.RegisterState(new AiStatePatrol());
         stateMachine.RegisterState(new AiStateChasePlayer());
         stateMachine.RegisterState(new AiStateAttackPlayer());
+        stateMachine.RegisterState(new AiStateAlarm());
         stateMachine.ChangeState(initialState);
         hp = config.hp;
     }
@@ -60,7 +61,7 @@ public class AiAgent : MonoBehaviour
             // If the enemy detect the player long enough he start chasing him
             if (detectionDuration <= 0)
             {
-                stateMachine.ChangeState(AiStateId.ChasePlayer);
+                OnEnemyDetected();
                 transform.GetChild(4).GetComponent<MeshRenderer>().material = chaseMaterial;
             }
         }
@@ -85,7 +86,7 @@ public class AiAgent : MonoBehaviour
 
             if (aggroDuration <= 0)
             {
-                stateMachine.ChangeState(AiStateId.Patrol);
+                OnLosingAggro();
                 transform.GetChild(4).GetComponent<MeshRenderer>().material = patrolMaterial;
             }
         }
@@ -99,5 +100,16 @@ public class AiAgent : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    protected virtual void OnEnemyDetected()
+    {
+        stateMachine.ChangeState(AiStateId.ChasePlayer);
+    }
+
+    protected virtual void OnLosingAggro()
+    {
+        Debug.Log("doing patrols");
+        stateMachine.ChangeState(AiStateId.Patrol);
     }
 }
