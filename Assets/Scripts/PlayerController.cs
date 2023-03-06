@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
         mana = manaMax;
         stamina = staminaMax;
         agent = GetComponent<NavMeshAgent>();
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         _camera = Camera.main;
         lastRClick = Time.time;
         isRunning = false;
@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
         if (agent.hasPath)
         {
             animator.SetFloat(Speed, agent.velocity.magnitude);
+            Debug.Log(animator.GetFloat("Speed"));
         }
         else
         {
