@@ -15,8 +15,12 @@ public class AiStateChasePlayer : AiState
     public void Enter(AiAgent agent)
     {
         Debug.Log("chase player");
-        if(agent.sensor.Objects.Count > 0)
+
+        if (agent.sensor.Objects.Count > 0)
             player = agent.sensor.Objects[0];
+        else
+            player = Game.Instance.player;
+
     }
 
     public void Update(AiAgent agent)

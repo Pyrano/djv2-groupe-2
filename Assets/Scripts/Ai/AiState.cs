@@ -8,7 +8,8 @@ public enum AiStateId
     Death,
     Idle,
     AttackPlayer,
-    Patrol
+    Patrol,
+    Alarm
 }
 public interface AiState
 {
