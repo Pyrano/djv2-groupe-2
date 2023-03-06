@@ -153,6 +153,13 @@ public class PlayerController : MonoBehaviour
     void OnEnable()
     {
         EventManager.AddListener("Player damage", TakeDamage);
+        EventManager.AddListener("SpellCast : Shuriken", ShurikenCast);
+    }
+
+    private void ShurikenCast(object data)
+    {
+        Debug.Log("Yahooooooooo");
+        animator.SetTrigger("Attack");
     }
 
     private void TakeDamage(object data)
