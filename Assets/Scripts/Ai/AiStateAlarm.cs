@@ -13,6 +13,7 @@ public class AiStateAlarm : AiState
     {
         Vector3 alarm = Game.Instance.GetClosestAlarm(agent.transform.position);
         agent.navMeshAgent.SetDestination(alarm);
+        Game.Instance.triggeredAlarm = alarm;
     }
 
     public void Update(AiAgent agent)
@@ -27,7 +28,7 @@ public class AiStateAlarm : AiState
                 if (enemy != agent)
                 {
                     enemy.sensor.objects.Add(Game.Instance.player);
-                    enemy.stateMachine.ChangeState(AiStateId.ChasePlayer);
+                    enemy.stateMachine.ChangeState(AiStateId.CheckAlarm);
                 }
             }
             agent.stateMachine.ChangeState(AiStateId.ChasePlayer);
