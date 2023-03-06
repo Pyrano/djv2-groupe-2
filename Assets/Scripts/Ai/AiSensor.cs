@@ -6,6 +6,8 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class AiSensor : MonoBehaviour
 {
+
+
    public float distance = 10f;
    public float angle = 30;
    public float height = 1f;
@@ -52,6 +54,16 @@ public class AiSensor : MonoBehaviour
    private float scanInterval;
    private float scanTimer;
 
+   protected void OnEnable() 
+    {
+        EventManager.AddListener("SpellCast : Teleportation", Clear);
+    }
+
+   private void Clear(CustomEventData data)
+   {
+      objects.Clear();
+   }
+
    private void Start()
    {
       scanInterval = 1f / scanFrequency;
@@ -62,15 +74,16 @@ public class AiSensor : MonoBehaviour
 
    private void Update()
    {
+
+   }
+   private void FixedUpdate()
+   {
       scanTimer -= Time.deltaTime;
       if (scanTimer < 0)
       {
          scanTimer += scanInterval;
          Scan();
       }
-   }
-   private void LateUpdate()
-   {
       drawFieldOfView(viewOffset);
    }
 

@@ -6,6 +6,7 @@ using UnityEngine.AI;
 
 public class PlayerController : MonoBehaviour
 {
+    public bool isNoisy;
     private NavMeshAgent agent;
     private Camera _camera;
 

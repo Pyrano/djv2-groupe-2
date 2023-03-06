@@ -22,9 +22,11 @@ public class AiStateChasePlayer : AiState
     public void Update(AiAgent agent)
     {
         // TO DO  : Optimize this
-        agent.navMeshAgent.SetDestination(player.transform.position);
+        
         if(agent.sensor.Objects.Count == 0)
             return;
+        agent.navMeshAgent.SetDestination(player.transform.position);
+        Debug.Log("Destination : " + player.transform.position);
         if (Vector3.Distance(agent.sensor.Objects[0].transform.position, agent.transform.position) <= agent.config.attackRange)
         {
             agent.stateMachine.ChangeState(AiStateId.AttackPlayer);
