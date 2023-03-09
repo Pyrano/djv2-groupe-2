@@ -15,8 +15,8 @@ MonoBehaviour:
   hp: 3
   hpMah: 3
   speed: 2
-  detectionSpeed: 0.3
-  aggroTime: 0.1
+  detectionSpeed: 0.5
+  aggroTime: 2
   attackRange: 1.5
   attackSpeed: 3
   attackDamage: 10

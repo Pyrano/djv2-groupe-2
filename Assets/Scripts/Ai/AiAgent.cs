@@ -18,6 +18,7 @@ public class AiAgent : MonoBehaviour
     public Material patrolMaterial;
     public Material chaseMaterial;
     public GameObject Player;
+    public GameObject questionMark;
     
 
     [HideInInspector] public AiSensor sensor;
@@ -27,7 +28,7 @@ public class AiAgent : MonoBehaviour
     {
         stateMachine = new AiStateMachine(this);
         
-        _animator = GetComponent<Animator>();
+        _animator = GetComponentInChildren<Animator>();
         stateMachine.RegisterState(new AiStatePatrol());
         stateMachine.RegisterState(new AiStateChasePlayer());
         stateMachine.RegisterState(new AiStateAttackPlayer());
@@ -59,12 +60,13 @@ public class AiAgent : MonoBehaviour
         //Detect enemy : 
         if (sensor.Objects.Count > 0 && stateMachine.currentState != AiStateId.ChasePlayer && stateMachine.currentState != AiStateId.AttackPlayer)
         {
+            questionMark.SetActive(true);
             detectionDuration = (detectionDuration - Time.deltaTime < 0) ? 0 : detectionDuration - Time.deltaTime;
             // If the enemy detect the player long enough he start chasing him
             if (detectionDuration <= 0)
             {
                 OnEnemyDetected();
-                transform.GetChild(4).GetComponent<MeshRenderer>().material = chaseMaterial;
+                transform.GetChild(0).GetComponent<MeshRenderer>().material = chaseMaterial;
             }
         }
         // If no player is detected
@@ -89,7 +91,8 @@ public class AiAgent : MonoBehaviour
             if (aggroDuration <= 0)
             {
                 OnLosingAggro();
-                transform.GetChild(4).GetComponent<MeshRenderer>().material = patrolMaterial;
+                questionMark.SetActive(false);
+                transform.GetChild(0).GetComponent<MeshRenderer>().material = patrolMaterial;
             }
         }
         
