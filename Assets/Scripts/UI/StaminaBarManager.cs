@@ -23,7 +23,6 @@ public class StaminaBarManager : MonoBehaviour
 
 private void OnStaminaChange(object objData)
 {
-    Debug.Log("Stamina !");
     CustomEventData data = (CustomEventData) objData;
     bar.SetRatio(data.ratio);
 }

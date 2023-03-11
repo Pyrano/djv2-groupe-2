@@ -26,29 +26,32 @@ public abstract class Spell : MonoBehaviour
     }
 
     private void Update()
-    {
-        if (Input.GetKeyUp(key))
+    {   
+        if(!Pause.isPaused)
         {
-            OnKeyUp();
-            if (_cooldownTime <= 0 && manaCost <= controller.mana && staminaCost <= controller.stamina)
+            if (Input.GetKeyUp(key))
             {
-                _cooldownTime = cooldown;
-                controller.ChangeMana(-manaCost);
-                controller.ChangeStamina(-staminaCost);
-                OnCast();
+                OnKeyUp();
+                if (_cooldownTime <= 0 && manaCost <= controller.mana && staminaCost <= controller.stamina)
+                {
+                    _cooldownTime = cooldown;
+                    controller.ChangeMana(-manaCost);
+                    controller.ChangeStamina(-staminaCost);
+                    OnCast();
+                }
             }
-        }
-        if (Input.GetKeyDown(key))
-        {
-            OnKeyDown();
-        }
-        if (Input.GetKey(key))
-        {
-            OnPreCast();
-        }
-        OnUpdate();
+            if (Input.GetKeyDown(key))
+            {
+                OnKeyDown();
+            }
+            if (Input.GetKey(key))
+            {
+                OnPreCast();
+            }
+            OnUpdate();
 
-        _cooldownTime -= Time.deltaTime;
+            _cooldownTime -= Time.deltaTime;
+        }
     }
 
     protected virtual void OnStart()

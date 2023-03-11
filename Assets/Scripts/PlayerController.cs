@@ -39,6 +39,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (!Pause.isPaused)
+        {
         if (agent.hasPath)
         {
             animator.SetFloat(Speed, agent.velocity.magnitude);
@@ -89,6 +91,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             agent.speed = 3.5f;
+        }
         }
     }
 

@@ -23,7 +23,7 @@ public class HealthBarManager : MonoBehaviour
 
 private void OnLifeChange(object objData)
 {
-    Debug.Log("Life !");
+
     CustomEventData data = (CustomEventData) objData;
     bar.SetRatio(data.ratio);
 }

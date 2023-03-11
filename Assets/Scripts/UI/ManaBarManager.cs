@@ -23,7 +23,6 @@ public class ManaBarManager : MonoBehaviour
 
 private void OnManaChange(object objData)
 {
-    Debug.Log("Mana !");
     CustomEventData data = (CustomEventData) objData;
     bar.SetRatio(data.ratio);
 }

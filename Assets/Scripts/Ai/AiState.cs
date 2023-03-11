@@ -10,7 +10,8 @@ public enum AiStateId
     AttackPlayer,
     Patrol,
     Alarm,
-    CheckAlarm
+    CheckAlarm,
+    Dead
 }
 
 public interface AiState

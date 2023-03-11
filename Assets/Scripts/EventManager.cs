@@ -71,6 +71,11 @@ public class CustomEventData
     public float ratio;
     public CooldownInfo cdInfo;
 
+    public CustomEventData()
+    {
+        
+    }
+
     public CustomEventData(int lifeChange)
     {
         this.lifeChange = lifeChange;
