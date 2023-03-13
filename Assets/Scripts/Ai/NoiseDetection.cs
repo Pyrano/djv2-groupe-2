@@ -29,7 +29,7 @@ public class NoiseDetection : MonoBehaviour
                 if (sensor.objects.Count == 0)
                 {
                     sensor.objects.Add(other.gameObject);
-                    Debug.Log("Add");
+                    //Debug.Log("Add");
                 }
             }
             
@@ -40,7 +40,7 @@ public class NoiseDetection : MonoBehaviour
     {
         if (other.TryGetComponent<PlayerController>(out var player))
         {
-            Debug.Log("Exit");
+            //Debug.Log("Exit");
             sensor.objects.Clear();
         }
     }
