@@ -92,10 +92,6 @@ public class PlayerController : MonoBehaviour
                 lastRegen = Time.time;
             }
         
-        if (Input.GetMouseButtonDown(2))
-        {
-            ChangeStamina(-10);
-        }
 
         UpdateNoise();
         if (isJumping)
@@ -176,6 +172,12 @@ public class PlayerController : MonoBehaviour
     {
         EventManager.AddListener("Player damage", TakeDamage);
         EventManager.AddListener("SpellCast : Shuriken", ShurikenCast);
+        EventManager.AddListener("Gain Mana", ManaOnDeath);
+    }
+
+    private void ManaOnDeath(object obj) 
+    {
+        ChangeMana(25);
     }
 
     private void ShurikenCast(object data)

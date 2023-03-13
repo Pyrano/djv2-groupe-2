@@ -113,6 +113,7 @@ public class AiAgent : MonoBehaviour
             isDead = true;
             stateMachine.ChangeState(AiStateId.Dead);
             _animator.SetTrigger("Death");
+            EventManager.TriggerEvent("Gain Mana", new CustomEventData());
             Invoke("DestroyThis", 2);
         }
     }
