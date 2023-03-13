@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (!Pause.isPaused)
+        if (!Pause.isPaused && hp > 0)
         {
         agent.SamplePathPosition(UnityEngine.AI.NavMesh.GetAreaFromName("Jump"), 1, out var h);
         if ( h.mask ==  4)
@@ -116,6 +116,7 @@ public class PlayerController : MonoBehaviour
         if (hp < 0)
         {
             hp = 0;
+            animator.SetTrigger("Death");
         }
         if (hp > hpMax)
         {
