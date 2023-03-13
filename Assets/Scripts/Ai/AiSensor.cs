@@ -317,18 +317,18 @@ public class AiSensor : MonoBehaviour
          viewMesh.RecalculateNormals();
    }
 
-   IEnumerator lookAroundCoroutine(AiAgent agent)
-   {
-        for (int i = 0; i < 5; i++)
-        {        
-            agent.navMeshAgent.SetDestination(agent.transform.position + new Vector3(UnityEngine.Random.Range(-10, 10), 0, UnityEngine.Random.Range(-10, 10)));
-            yield return new WaitForSeconds(1);
-        }
-   }
+   // IEnumerator lookAroundCoroutine(AiAgent agent)
+   // {
+   //      for (int i = 0; i < 5; i++)
+   //      {        
+   //          agent.navMeshAgent.SetDestination(agent.transform.position + new Vector3(UnityEngine.Random.Range(-2, 2), 0, UnityEngine.Random.Range(-2, 2)));
+   //          yield return new WaitForSeconds(1);
+   //      }
+   // }
 
    public void lookAround(AiAgent agent)
    {
-      StartCoroutine(lookAroundCoroutine(agent));
+      // StartCoroutine(lookAroundCoroutine(agent));
    }
 
 }
