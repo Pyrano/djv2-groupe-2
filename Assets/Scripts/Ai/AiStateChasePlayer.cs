@@ -32,10 +32,13 @@ public class AiStateChasePlayer : AiState
             agent.sensor.lookAround(agent);
             return;
         }
+        else
+        {
         agent.navMeshAgent.SetDestination(player.transform.position);
         if (Vector3.Distance(agent.sensor.Objects[0].transform.position, agent.transform.position) <= agent.config.attackRange)
         {
             agent.stateMachine.ChangeState(AiStateId.AttackPlayer);
+        }
         }
     }
 

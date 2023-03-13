@@ -328,7 +328,7 @@ public class AiSensor : MonoBehaviour
 
    public void lookAround(AiAgent agent)
    {
-      StartCoroutine(lookAroundCoroutine(agent));
+      //StartCoroutine(lookAroundCoroutine(agent));
    }
 
 }
