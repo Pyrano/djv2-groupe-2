@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private float lastRClick;
     private NavMeshAgent agent;
     private Camera _camera;
+    private bool isJumping;
 
     public int hp;
     public int hpMax;
@@ -41,10 +42,23 @@ public class PlayerController : MonoBehaviour
     {
         if (!Pause.isPaused)
         {
+        agent.SamplePathPosition(UnityEngine.AI.NavMesh.GetAreaFromName("Jump"), 1, out var h);
+        if ( h.mask ==  4)
+        {
+            Debug.Log(h.ToString());
+            animator.SetTrigger("Jump");
+            isJumping = true;
+        }
+        else
+        {
+            animator.ResetTrigger("Jump");
+            isJumping = false;
+        }
+
         if (agent.hasPath)
         {
             animator.SetFloat(Speed, agent.velocity.magnitude);
-            Debug.Log(animator.GetFloat("Speed"));
+
         }
         else
         {
@@ -84,10 +98,15 @@ public class PlayerController : MonoBehaviour
         }
 
         UpdateNoise();
-        if (isRunning)
+        if (isJumping)
+        {
+            agent.speed =  1.5f;
+        }
+        else if (isRunning)
         {
             agent.speed = 5.0f;
         }
+
         else
         {
             agent.speed = 3.5f;
@@ -161,7 +180,7 @@ public class PlayerController : MonoBehaviour
 
     private void ShurikenCast(object data)
     {
-        Debug.Log("Yahooooooooo");
+
         animator.SetTrigger("Attack");
     }
 
