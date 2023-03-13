@@ -5,7 +5,7 @@ using UnityEngine;
 public class AiStateAttackPlayer : AiState
 {
     private float timeToAttack;
-    private static readonly int IsAttacking = Animator.StringToHash("IsAttacking");
+    private static readonly int Attack = Animator.StringToHash("Attack");
 
     public AiStateId GetId()
     {
@@ -15,7 +15,7 @@ public class AiStateAttackPlayer : AiState
     public void Enter(AiAgent agent)
     {
         timeToAttack = 0;
-        agent._animator.SetBool(IsAttacking, true);
+        //agent._animator.SetBool(IsAttacking, true);
     }
 
     public void Update(AiAgent agent)
@@ -37,6 +37,8 @@ public class AiStateAttackPlayer : AiState
                 {
                     // UI
                     EventManager.TriggerEvent("Player damage", new CustomEventData((int)agent.config.attackDamage));
+                    agent._animator.SetTrigger(Attack);
+                    
                 }
             }
             timeToAttack = agent.config.attackSpeed;
@@ -45,6 +47,6 @@ public class AiStateAttackPlayer : AiState
 
     public void Exit(AiAgent agent)
     {
-        agent._animator.SetBool(IsAttacking, false);
+        //agent._animator.SetBool(IsAttacking, false);
     }
 }
